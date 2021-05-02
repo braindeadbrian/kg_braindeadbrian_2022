@@ -1,10 +1,11 @@
 package main
 
 import (
+	"os"
 	"strconv"
 )
 
-func convert(nums []int, length int){
+func convert(nums []int){
 	phonetic := map[string]string{
 		"0" : "Zero",
 		"1" : "One",
@@ -29,6 +30,13 @@ func convert(nums []int, length int){
 	}
 }
 func main() {
-	var sampleArray = []int{34, 65}
-	convert(sampleArray, len(sampleArray))
+	args := os.Args[1:]
+	argsArray := make([]int, len(args))
+	for i := 0; i < len(args); i++{
+		num, err := strconv.Atoi(args[i])
+		if err == nil{
+			argsArray[i] = num
+		}
+	}
+	convert(argsArray)
 }
